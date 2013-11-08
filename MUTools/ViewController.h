@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "M3U8Handler.h"
+#import "VideoDownloader.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <M3U8HandlerDelegate, VideoDownloadDelegate>
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
 @end
