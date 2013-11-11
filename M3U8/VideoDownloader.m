@@ -9,6 +9,7 @@
 #import "VideoDownloader.h"
 #import "M3U8Playlist.h"
 #import "SegmentDownloader.h"
+#import "SegmentCacheManager.h"
 
 @interface VideoDownloader () {
     NSUInteger tototalDownloading;
@@ -65,8 +66,7 @@
     for(NSInteger i = 0; i < self.playlist.length; i++) {
         NSString *filename = [NSString stringWithFormat:@"id%d",i];
         NSString *tmpfilename = [filename stringByAppendingString:kTextDownloadingFileSuffix];
-        NSString *pathPrefix = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) objectAtIndex:0];
-        NSString *savePath = [[pathPrefix stringByAppendingPathComponent:kPathDownload] stringByAppendingPathComponent:self.playlist.uuid];
+        NSString *savePath = [[SegmentCacheManager cacheRootDirectory] stringByAppendingPathComponent:self.playlist.uuid];
         NSString *fullpath = [savePath stringByAppendingPathComponent:filename];
         NSString *fullpath_tmp = [savePath stringByAppendingPathComponent:tmpfilename];
         
@@ -113,9 +113,8 @@
 
 - (NSString*)generateLocalM3U8file {
     if(self.playlist) {
-        NSString *pathPrefix = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) objectAtIndex:0];
-        NSString *saveTo = [[pathPrefix stringByAppendingPathComponent:kPathDownload] stringByAppendingPathComponent:self.playlist.uuid];
-        NSString *fullpath = [saveTo stringByAppendingPathComponent:@"movie.m3u8"];
+        NSString *saveTo = [[SegmentCacheManager cacheRootDirectory] stringByAppendingPathComponent:self.playlist.uuid];
+        NSString *fullpath = [saveTo stringByAppendingPathComponent:kM3u8FileName];
         LOG(@"createLocalM3U8file:%@",fullpath);
         
         // M3U8 head file

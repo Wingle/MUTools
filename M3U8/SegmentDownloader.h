@@ -16,18 +16,13 @@ typedef NS_ENUM(NSInteger, MUDownloadTaskStatus) {
     MUDownloadTaskStatusStoped = 1,
 };
 
-#define kPathDownload @"Downloads"
 #define kTextDownloadingFileSuffix @"_etc"
 
 @interface SegmentDownloader : NSObject
 
-@property (nonatomic, copy) NSString *fileName;
-@property (nonatomic, copy) NSString *filePath;
-@property (nonatomic, copy) NSString *tmpFileName;
-@property (nonatomic, copy) NSString *downloadUrl;
+
 @property (nonatomic, weak) id<SegmentDownloadDelegate> delegate;
 @property (nonatomic, assign) MUDownloadTaskStatus status;
-@property (nonatomic, assign) CGFloat progress;
 
 - (void)start;
 - (void)stop;

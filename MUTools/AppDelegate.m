@@ -10,6 +10,7 @@
 #import "HTTPServer.h"
 #import "DDTTYLogger.h"
 #import "SegmentDownloader.h"
+#import "SegmentCacheManager.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) HTTPServer *httpServer;

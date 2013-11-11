@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "WGWVideoLoader.h"
+#import "SegmentCacheManager.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -42,6 +44,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) dealloc {
+    [self.downLoader removeObserver:self
+                         forKeyPath:@"downLoadProgress"
+                            context:nil];
+}
+
 - (IBAction)downLoadVideo:(id)sender {
     if(self.downLoader)
     {
@@ -50,17 +58,16 @@
     [self.statueLabel setText:@"Downloading..."];
     
 }
+
 - (IBAction)pauseDownLoadVideo:(id)sender {
-    
-}
-- (IBAction)playVideo:(id)sender {
-    
-    NSString *strUrl = [NSString stringWithFormat:@"http://127.0.0.1:12345/%d/movie.m3u8",[self.m3u8_url hash]];
-    NSLog(@"strurl = %@",strUrl);
-    [self.webView loadRequest:[[NSURLRequest alloc]initWithURL:[[NSURL alloc]initWithString:strUrl]]];
-    
+    [SegmentCacheManager deleteCacheRootDirectory];
 }
 
+- (IBAction)playVideo:(id)sender {
+    NSURL *url = [[WGWVideoLoader shareVideoLoader] videoM3u8UrlForURL:self.m3u8_url];
+    NSLog(@"strurl = %@",[url description]);
+    [self.webView loadRequest:[[NSURLRequest alloc]initWithURL:url]];
+}
 
 - (void)videoDownloaderFinished:(VideoDownloader *) videoDownloader {
     [self.statueLabel setText:@"Download Finished"];

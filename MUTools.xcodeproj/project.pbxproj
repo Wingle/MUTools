@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		98058BBA182CB93A005D353E /* WGWVideoLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 98058BB9182CB93A005D353E /* WGWVideoLoader.m */; };
+		98058BBD182CCE51005D353E /* SegmentCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 98058BBC182CCE51005D353E /* SegmentCacheManager.m */; };
 		989FCED6182B2A7100A5B674 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989FCED5182B2A7100A5B674 /* Foundation.framework */; };
 		989FCED8182B2A7100A5B674 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989FCED7182B2A7100A5B674 /* CoreGraphics.framework */; };
 		989FCEDA182B2A7100A5B674 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989FCED9182B2A7100A5B674 /* UIKit.framework */; };
@@ -82,6 +84,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		98058BB8182CB93A005D353E /* WGWVideoLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGWVideoLoader.h; sourceTree = "<group>"; };
+		98058BB9182CB93A005D353E /* WGWVideoLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGWVideoLoader.m; sourceTree = "<group>"; };
+		98058BBB182CCE51005D353E /* SegmentCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentCacheManager.h; sourceTree = "<group>"; };
+		98058BBC182CCE51005D353E /* SegmentCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentCacheManager.m; sourceTree = "<group>"; };
 		989FCED2182B2A7100A5B674 /* MUTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MUTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		989FCED5182B2A7100A5B674 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		989FCED7182B2A7100A5B674 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -322,6 +328,10 @@
 				989FCF17182B3DB700A5B674 /* DownloadDelegate.h */,
 				989FCF3B182B568400A5B674 /* VideoDownloader.h */,
 				989FCF3C182B568400A5B674 /* VideoDownloader.m */,
+				98058BB8182CB93A005D353E /* WGWVideoLoader.h */,
+				98058BB9182CB93A005D353E /* WGWVideoLoader.m */,
+				98058BBB182CCE51005D353E /* SegmentCacheManager.h */,
+				98058BBC182CCE51005D353E /* SegmentCacheManager.m */,
 			);
 			path = M3U8;
 			sourceTree = SOURCE_ROOT;
@@ -620,6 +630,7 @@
 				989FD001182B940A00A5B674 /* HTTPDataResponse.m in Sources */,
 				989FCEEC182B2A7100A5B674 /* ViewController.m in Sources */,
 				989FD00B182B940A00A5B674 /* DDASLLogger.m in Sources */,
+				98058BBD182CCE51005D353E /* SegmentCacheManager.m in Sources */,
 				989FCFFC182B940A00A5B674 /* HTTPServer.m in Sources */,
 				989FCFF8182B940A00A5B674 /* DDRange.m in Sources */,
 				989FCF33182B45F100A5B674 /* ASIDataCompressor.m in Sources */,
@@ -633,6 +644,7 @@
 				989FCF36182B45F100A5B674 /* ASIFormDataRequest.m in Sources */,
 				989FD010182B940A00A5B674 /* DispatchQueueLogFormatter.m in Sources */,
 				989FD00C182B940A00A5B674 /* DDFileLogger.m in Sources */,
+				98058BBA182CB93A005D353E /* WGWVideoLoader.m in Sources */,
 				989FCF3A182B45F100A5B674 /* Reachability.m in Sources */,
 				989FCFFE182B940A00A5B674 /* MultipartMessageHeader.m in Sources */,
 				989FCF35182B45F100A5B674 /* ASIDownloadCache.m in Sources */,
@@ -856,6 +868,7 @@
 				989FCF06182B2A7100A5B674 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		989FCF07182B2A7100A5B674 /* Build configuration list for PBXNativeTarget "MUToolsTests" */ = {
 			isa = XCConfigurationList;
@@ -864,6 +877,7 @@
 				989FCF09182B2A7100A5B674 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

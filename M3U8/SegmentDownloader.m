@@ -8,9 +8,14 @@
 
 #import "SegmentDownloader.h"
 #import "ASIHTTPRequest.h"
+#import "SegmentCacheManager.h"
 
 @interface SegmentDownloader ()
 @property (nonatomic, strong) ASIHTTPRequest *request;
+@property (nonatomic, copy) NSString *fileName;
+@property (nonatomic, copy) NSString *filePath;
+@property (nonatomic, copy) NSString *tmpFileName;
+@property (nonatomic, copy) NSString *downloadUrl;
 
 @end
 
@@ -26,11 +31,8 @@
         _fileName = fileName;
         _filePath = path;
         
-        NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES)
-                                objectAtIndex:0];
-        NSString *fileDir = [[docDir stringByAppendingPathComponent:kPathDownload]
-                            stringByAppendingPathComponent:_filePath];
-        
+        // if fileDir is not exist , creat one.
+        NSString *fileDir = [[SegmentCacheManager cacheRootDirectory] stringByAppendingPathComponent:_filePath];
         NSString *downloadingFileName = [fileDir stringByAppendingPathComponent:
                                          [_fileName stringByAppendingString:kTextDownloadingFileSuffix]];
         _tmpFileName = downloadingFileName;
@@ -42,7 +44,6 @@
                            attributes:nil
                                 error:nil];
         }
-        _progress = 0.0f;
         _status = MUDownloadTaskStatusStoped;
     }
     return  self;
@@ -53,9 +54,8 @@
     NSURL *Url = [NSURL URLWithString:[self.downloadUrl
                                        stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     self.request = [ASIHTTPRequest requestWithURL:Url];
-    [self.request setTemporaryFileDownloadPath: self.tmpFileName];
-    NSString *pathPrefix = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) objectAtIndex:0];
-    NSString *saveTo = [[pathPrefix stringByAppendingPathComponent:kPathDownload] stringByAppendingPathComponent:self.filePath];
+    [self.request setTemporaryFileDownloadPath:self.tmpFileName];
+    NSString *saveTo = [[SegmentCacheManager cacheRootDirectory] stringByAppendingPathComponent:self.filePath];
     [self.request setDownloadDestinationPath:[saveTo stringByAppendingPathComponent:self.fileName]];
     [self.request setDelegate:self];
     self.request.allowResumeForFileDownloads = YES;
@@ -86,7 +86,6 @@
         }
     }
     self.status = MUDownloadTaskStatusStoped;
-    self.progress = 0.0f;
 }
 
 -(void)dealloc {

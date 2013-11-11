@@ -80,7 +80,7 @@
     }
     
     M3U8Playlist *thePlaylist = [[M3U8Playlist alloc] initWithSegments:segments];
-    thePlaylist.uuid = [NSString stringWithFormat:@"%d",[urlstr hash]];
+    thePlaylist.uuid = [NSString stringWithFormat:@"%u",[urlstr hash]];
     self.playlist = thePlaylist;
     
     if(self.delegate &&
