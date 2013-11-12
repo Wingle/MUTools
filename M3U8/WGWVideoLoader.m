@@ -23,7 +23,7 @@
 }
 
 
-- (NSURL *)videoM3u8UrlForURL:(NSString *) aURL {
+- (NSURL *)videoM3u8UrlForURL:(NSString *) aURL urlDoesExisted:(BOOL *) isExisted {
     if (!aURL) {
         return nil;
     }
@@ -35,8 +35,10 @@
     if ([fileManager fileExistsAtPath:m3u8file]) {
         NSString *m3u8Link = [NSString stringWithFormat:@"http://127.0.0.1:12345/%u/%@",[aURL hash],kM3u8FileName];
         url = [NSURL URLWithString:m3u8Link];
+        *isExisted = YES;
     }else {
         url = [NSURL URLWithString:aURL];
+        *isExisted = NO;
     }
     return url;
 }

@@ -51,8 +51,7 @@
 }
 
 - (IBAction)downLoadVideo:(id)sender {
-    if(self.downLoader)
-    {
+    if(self.downLoader) {
         [self.downLoader startDownloadVideo];
     }
     [self.statueLabel setText:@"Downloading..."];
@@ -64,7 +63,14 @@
 }
 
 - (IBAction)playVideo:(id)sender {
-    NSURL *url = [[WGWVideoLoader shareVideoLoader] videoM3u8UrlForURL:self.m3u8_url];
+    BOOL isExisted = NO;
+    NSURL *url = [[WGWVideoLoader shareVideoLoader] videoM3u8UrlForURL:self.m3u8_url urlDoesExisted:&isExisted];
+    if (!isExisted) {
+        if(self.downLoader) {
+            [self.downLoader startDownloadVideo];
+        }
+        [self.statueLabel setText:@"Downloading..."];
+    }
     NSLog(@"strurl = %@",[url description]);
     [self.webView loadRequest:[[NSURLRequest alloc]initWithURL:url]];
 }

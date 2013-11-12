@@ -12,6 +12,6 @@
 
 + (instancetype)shareVideoLoader;
 
-- (NSURL *)videoM3u8UrlForURL:(NSString *) aURL;
+- (NSURL *)videoM3u8UrlForURL:(NSString *) aURL urlDoesExisted:(BOOL *) isExisted;
 
 @end
